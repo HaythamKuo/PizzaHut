@@ -46,6 +46,7 @@ const showRecipe = async function () {
 
     //ajax取得資料////////////////////////
     await model.loadRecipe(id);
+    console.log(model);
 
     //const recipeContainer = document.querySelector(".recipe");
     //recipeView.renderSpinner();
@@ -58,10 +59,10 @@ const showRecipe = async function () {
     };
     recipeView = new recipeViews();
     recipeView.render(model.state.recipe);
-    //recipeView.render(model.state.recipe);
+    recipeView.render(model.state.recipe);
     console.log(recipeView);
   } catch (error) {
-    alert(error);
+    console.error(error);
   }
 };
 
