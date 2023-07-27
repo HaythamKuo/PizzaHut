@@ -1,4 +1,4 @@
-# PizzaHut
+# PizzaHurt
 
 # Intro
 

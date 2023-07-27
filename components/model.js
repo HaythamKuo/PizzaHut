@@ -1,17 +1,17 @@
-import { async } from "regenerator-runtime";
-import axios from "axios";
+import { API_URL } from "../config.js";
+import { getData } from "../helpers.js";
 
 export const state = {
   recipe: {},
 };
 
-export const loadRecipe = async function (id) {
+export const testAxios = async function (id) {
   try {
-    const res = await axios.get(
-      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
-    );
-    if (res.status !== 200) throw new Error(`${data.message} (${res.status})`);
+    //調用封裝的方法取得API
+    const res = await getData(`${API_URL}/${id}`);
+
     const { recipe } = res.data.data;
+
     state.recipe = {
       cookingTime: recipe.cooking_time,
       id: recipe.id,
@@ -22,7 +22,7 @@ export const loadRecipe = async function (id) {
       sourceUrl: recipe.source_url,
       title: recipe.title,
     };
-  } catch (err) {
-    alert(err);
+  } catch (error) {
+    console.error(error);
   }
 };
