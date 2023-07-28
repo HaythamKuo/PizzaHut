@@ -1,6 +1,7 @@
 //能夠在專案中反覆使用的函數
 import axios from "axios";
 import { TIMEOUT_SEC } from "./config.js";
+
 const timeout = function (s) {
   return new Promise(function (_, reject) {
     setTimeout(function () {

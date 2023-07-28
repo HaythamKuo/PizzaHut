@@ -4,6 +4,12 @@ class RecipeView {
   #parentEl = document.querySelector(".recipe");
   #data;
 
+  //錯誤訊息應該要是私有屬性
+  #errMessage = "找不到此菜單，請嘗試另外一個 🤓";
+
+  //正確訊息
+  #message = "";
+
   //公共API 能讓每一個view被渲染的方法
   render(data) {
     this.#data = data;
@@ -115,7 +121,7 @@ class RecipeView {
           </div>`;
   }
 
-  //過場特效
+  //公共API 過場特效
   crossAnimation() {
     const markup = `
     <div class="spinner">
@@ -125,6 +131,43 @@ class RecipeView {
     </div>`;
     this.#clear();
     this.#parentEl.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  //公共API 顯示錯誤資訊到view上
+  renderErrMes(mes = this.#errMessage) {
+    const markup = `
+      <div class="error">
+        <div>
+          <svg>
+            <use href="${icons}#icon-alert-triangle"></use>
+          </svg>
+        </div>
+        <p>${mes}</p>
+      </div>`;
+
+    this.#clear();
+    this.#parentEl.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  //公共API 顯示資訊到view上
+  renderMes(mes = this.#message) {
+    const markup = `
+    <div class="message">
+      <div>
+        <svg>
+          <use href="${icons}#icon-smile"></use>
+        </svg>
+      </div>
+      <p>${mes}</p>
+    </div>`;
+
+    this.#clear();
+    this.#parentEl.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  //publisher (Publisher-Subscriber design pattern)
+  addHandlerRender(handler) {
+    ["hashchange", "load"].forEach((e) => window.addEventListener(e, handler));
   }
 }
 export default new RecipeView();
