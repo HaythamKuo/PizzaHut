@@ -9,6 +9,7 @@ import searchView from "./components/searchView.js";
 //import icons from "url:./public/img/icons.svg";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
+import resultView from "./components/resultView.js";
 
 //渲染食譜方法////////////////////
 const showRecipe = async function () {
@@ -25,8 +26,11 @@ const showRecipe = async function () {
   }
 };
 
+//import進來的方法
 const controlRearchRes = async function () {
   try {
+    resultView.crossAnimation();
+
     //1. 獲取搜尋字串
     const query = searchView.getQuery();
     if (!query) return;
@@ -35,7 +39,8 @@ const controlRearchRes = async function () {
     await model.loadRecipeResult(query);
 
     //3. 搜尋結果
-    console.log(model.state.search);
+    //resultView.render(model.state.search.results);
+    resultView.render(model.getLimitData());
   } catch (err) {
     console.log(err);
   }

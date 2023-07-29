@@ -1,4 +1,4 @@
-import { API_URL } from "../config.js";
+import { API_URL, LIMIT_TEN } from "../config.js";
 import { getData } from "../helpers.js";
 
 export const state = {
@@ -6,6 +6,9 @@ export const state = {
   search: {
     query: "",
     results: [],
+    page: 1,
+    //設置環境變數
+    resultPage: LIMIT_TEN,
   },
 };
 
@@ -51,4 +54,11 @@ export const loadRecipeResult = async function (query) {
     console.error(error);
     throw error;
   }
+};
+
+//限制資料顯示 一頁僅能有10筆資料
+export const getLimitData = function (page = state.search.page) {
+  const start = (page - 1) * state.search.resultPage;
+  const end = page * state.search.resultPage;
+  return state.search.results.slice(start, end);
 };
