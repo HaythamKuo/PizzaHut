@@ -4,12 +4,13 @@ import "./styles/main.scss";
 import * as model from "./components/model.js";
 import recipeView from "./components/reciperview.js";
 import searchView from "./components/searchView.js";
+import resultView from "./components/resultView.js";
+import paginationView from "./components/paginationView.js";
 
 //再build application之後路徑可能有所改變
 //import icons from "url:./public/img/icons.svg";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import resultView from "./components/resultView.js";
 
 //渲染食譜方法////////////////////
 const showRecipe = async function () {
@@ -38,17 +39,29 @@ const controlRearchRes = async function () {
     // 2. 載入讀取結果
     await model.loadRecipeResult(query);
 
-    //3. 搜尋結果
-    //resultView.render(model.state.search.results);
+    // //3. 搜尋結果
     resultView.render(model.getLimitData());
+
+    // //4. 渲染起始頁面按鈕
+    paginationView.render(model.state.search);
   } catch (err) {
     console.log(err);
   }
+};
+
+const switchPagination = function (pageNum) {
+  console.log(pageNum);
+  //3. 搜尋結果
+  resultView.render(model.getLimitData(pageNum));
+
+  //4. 渲染起始頁面按鈕
+  paginationView.render(model.state.search);
 };
 
 //subscriber (Publisher-Subscriber design pattern)
 const init = function () {
   recipeView.addHandlerRender(showRecipe);
   searchView.handlerSearch(controlRearchRes);
+  paginationView.handlerClick(switchPagination);
 };
 init();

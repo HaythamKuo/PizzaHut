@@ -1,4 +1,3 @@
-import icons from "../public/img/icons.svg";
 import View from "./View.js";
 
 class ResultView extends View {

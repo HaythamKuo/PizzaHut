@@ -58,7 +58,10 @@ export const loadRecipeResult = async function (query) {
 
 //限制資料顯示 一頁僅能有10筆資料
 export const getLimitData = function (page = state.search.page) {
+  state.search.page = page;
   const start = (page - 1) * state.search.resultPage;
   const end = page * state.search.resultPage;
+
+  //根據不同參數切割出不同的資料集
   return state.search.results.slice(start, end);
 };

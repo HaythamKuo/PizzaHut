@@ -32,12 +32,12 @@ export default class View {
   renderErrMes(mes = this._errMessage) {
     const markup = `
     <div class="error">
-    <div>
-    <svg>
-    <use href="${icons}#icon-alert-triangle"></use>
-    </svg>
-    </div>
-    <p>${mes}</p>
+      <div>
+        <svg>
+          <use href="${icons}#icon-alert-triangle"></use>
+        </svg>
+      </div>
+      <p>${mes}</p>
     </div>`;
 
     this._clear();
@@ -48,12 +48,12 @@ export default class View {
   renderMes(mes = this._message) {
     const markup = `
         <div class="message">
-        <div>
-        <svg>
-        <use href="${icons}#icon-smile"></use>
-        </svg>
-        </div>
-        <p>${mes}</p>
+          <div>
+            <svg>
+              <use href="${icons}#icon-smile"></use>
+            </svg>
+          </div>
+          <p>${mes}</p>
         </div>`;
 
     this._clear();
