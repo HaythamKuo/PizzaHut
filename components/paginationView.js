@@ -17,63 +17,39 @@ class PaginationView extends View {
     });
   }
 
-  //渲染頁面按鈕
+  //渲染頁面按鈕/ 根據不同頁面渲染新相對應的按鈕
   _renderhtml() {
-    console.log(this._data);
-    const currentPage = this._data.page;
-    const numPages = Math.ceil(
-      this._data.results.length / this._data.resultPage
-    );
+    //這裡的page預設是1
+    const { page, results } = this._data;
+    const numPages = Math.ceil(results.length / this._data.resultPage);
 
-    //page 1 以及其他頁數
-    if (currentPage === 1 && numPages > 1) {
-      return `
-        <button data-goto="${
-          currentPage + 1
-        }" class="btn--inline pagination__btn--next">
-            <span>Page ${currentPage + 1}</span>
-            <svg class="search__icon">
-                <use href="${icons}#icon-arrow-right"></use>
-            </svg>
-        </button>`;
-    }
+    // 判斷是否需要顯示上一頁按鈕
+    const prevButton =
+      page > 1
+        ? `<button data-goto="${
+            page - 1
+          }" class="btn--inline pagination__btn--prev">
+           <svg class="search__icon">
+               <use href="${icons}#icon-arrow-left"></use>
+           </svg>
+           <span>Page ${page - 1} </span>
+       </button>`
+        : "";
 
-    // 最後頁數
-    if (currentPage === numPages && numPages > 1) {
-      return `
-        <button data-goto="${
-          currentPage - 1
-        }" class="btn--inline pagination__btn--prev">
-            <svg class="search__icon">
-                <use href="${icons}#icon-arrow-left"></use>
-            </svg>
-            <span>Page ${currentPage - 1} </span>
-        </button>`;
-    }
+    // 判斷是否需要顯示下一頁按鈕
+    const nextButton =
+      page < numPages
+        ? `<button data-goto="${
+            page + 1
+          }" class="btn--inline pagination__btn--next">
+           <span>Page ${page + 1}</span>
+           <svg class="search__icon">
+               <use href="${icons}#icon-arrow-right"></use>
+           </svg>
+        </button>`
+        : "";
 
-    //中間頁數
-    if (currentPage < numPages) {
-      return `
-        <button data-goto="${
-          currentPage - 1
-        }" class="btn--inline pagination__btn--prev">
-            <svg class="search__icon">
-                <use href="${icons}#icon-arrow-left"></use>
-            </svg>
-            <span>Page ${currentPage - 1} </span>
-        </button>
-        <button data-goto="${
-          currentPage + 1
-        }" class="btn--inline pagination__btn--next">
-            <span>Page ${currentPage + 1}</span>
-            <svg class="search__icon">
-                <use href="${icons}#icon-arrow-right"></use>
-            </svg>
-         </button>`;
-    }
-
-    //page 1 and there are no other pages
-    return "";
+    return prevButton + nextButton;
   }
 }
 

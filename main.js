@@ -19,6 +19,10 @@ const showRecipe = async function () {
     if (!id) return;
 
     recipeView.crossAnimation();
+
+    //更新sidebar資料讓被選擇的選項有css特效
+    resultView.update(model.getLimitData());
+
     await model.testAxios(id);
 
     recipeView.render(model.state.recipe);
@@ -39,28 +43,44 @@ const controlRearchRes = async function () {
     // 2. 載入讀取結果
     await model.loadRecipeResult(query);
 
-    // //3. 搜尋結果
+    // 3. 搜尋結果
     resultView.render(model.getLimitData());
 
-    // //4. 渲染起始頁面按鈕
+    // 4. 渲染起始頁面按鈕
     paginationView.render(model.state.search);
   } catch (err) {
     console.log(err);
   }
 };
 
+//依據條件渲染出想要的結果頁面
 const switchPagination = function (pageNum) {
   console.log(pageNum);
-  //3. 搜尋結果
+
+  //1. 依據條件重新渲染搜尋結果
+  /** getLimitData()這個方法跑出來的結果是陣列
+   * 再放到resultView.render() 這個方法裡渲染出模板
+   */
   resultView.render(model.getLimitData(pageNum));
 
-  //4. 渲染起始頁面按鈕
+  //2. 依據條件重新渲染起始頁面按鈕
   paginationView.render(model.state.search);
+};
+
+//調整餐點原料所需數量
+const contorlServings = function (serving) {
+  //update the recipe servings (in state)
+  model.updateServings(serving);
+
+  //update the recipe view
+  //recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
 };
 
 //subscriber (Publisher-Subscriber design pattern)
 const init = function () {
   recipeView.addHandlerRender(showRecipe);
+  recipeView.handlerUpdateServing(contorlServings);
   searchView.handlerSearch(controlRearchRes);
   paginationView.handlerClick(switchPagination);
 };

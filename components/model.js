@@ -65,3 +65,12 @@ export const getLimitData = function (page = state.search.page) {
   //根據不同參數切割出不同的資料集
   return state.search.results.slice(start, end);
 };
+
+//publisher (Publisher-Subscriber design pattern)
+export const updateServings = function (serving) {
+  state.recipe.ingredients.forEach((ing) => {
+    //newQt = oldQt * newServings / oldServings   2 * 8 / 4 = 4
+    ing.quantity = (ing.quantity * serving) / state.recipe.servings;
+  });
+  state.recipe.servings = serving;
+};

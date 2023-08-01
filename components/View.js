@@ -12,6 +12,41 @@ export default class View {
     this._parentEl.insertAdjacentHTML("afterbegin", markup);
   }
 
+  //可以重構
+  update(data) {
+    this._data = data;
+
+    /**這裡的方法是要創建新的文字模板並與當前的模板做比較
+     * 並且只更改會更動的文本屬性
+     */
+    const markup = this._renderhtml();
+
+    //能將文字模板轉換成內存裡的DOM Object的方法
+    const newDom = document.createRange().createContextualFragment(markup);
+
+    // 這是虛擬的 並不會顯示在畫面上 但是在資料上會與目前的dom不一樣
+    const newEls = Array.from(newDom.querySelectorAll("*"));
+
+    //這是當前dom的資料
+    const curEls = Array.from(this._parentEl.querySelectorAll("*"));
+
+    newEls.forEach((newEl, i) => {
+      const curEl = curEls[i];
+      //console.log(curEl, newEl.isEqualNode(curEl));
+      if (
+        !newEl.isEqualNode(curEl) &&
+        newEl.firstChild?.nodeValue.trim() !== ""
+      )
+        curEl.textContent = newEl.textContent;
+
+      if (!newEl.isEqualNode(curEl)) {
+        Array.from(newEl.attributes).forEach((e) =>
+          curEl.setAttribute(e.name, e.value)
+        );
+      }
+    });
+  }
+
   _clear() {
     this._parentEl.innerHTML = "";
   }
