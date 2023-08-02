@@ -11,12 +11,12 @@ class BookmarkView extends View {
   //正確訊息
   _message = "";
 
+  //publisher (Publisher-Subscriber design pattern)
   handlerBookMark(handler) {
     window.addEventListener("load", handler);
   }
 
   _renderhtml() {
-    console.log(this._data);
     return (
       //回傳的結果會變成字串
       this._data.map((bookmark) => previewView.render(bookmark, false)).join("")

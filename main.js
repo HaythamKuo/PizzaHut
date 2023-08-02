@@ -7,6 +7,8 @@ import searchView from "./components/searchView.js";
 import resultView from "./components/resultView.js";
 import paginationView from "./components/paginationView.js";
 import bookmarkView from "./components/bookmarkView.js";
+import addRecipeView from "./components/addRecipeView.js";
+import { MODAL_SECOND } from "./config.js";
 
 //再build application之後路徑可能有所改變
 //import icons from "url:./public/img/icons.svg";
@@ -80,10 +82,10 @@ const contorlServings = function (serving) {
   model.updateServings(serving);
 
   //update the recipe view
-  //recipeView.render(model.state.recipe);
   recipeView.update(model.state.recipe);
 };
 
+/////////
 //書籤功能
 const bookmark = function () {
   //新增/移除書籤
@@ -97,8 +99,39 @@ const bookmark = function () {
   bookmarkView.render(model.state.bookMarks);
 };
 
+//頁面重載時將storage資料重新渲染出來
 const loadBookMark = function () {
   bookmarkView.render(model.state.bookMarks);
+};
+
+const uploadRecipe = async function (newRecipe) {
+  try {
+    //過場特效
+    addRecipeView.crossAnimation();
+
+    await model.modelUploadRecipe(newRecipe);
+    console.log(model.state.recipe);
+
+    //渲染菜單
+    recipeView.render(model.state.recipe);
+
+    //成功新增訊息
+    addRecipeView.renderMes();
+
+    //渲染書籤
+    bookmarkView.render(model.state.bookMarks);
+
+    //將新增的id更新到url上
+    window.history.pushState(null, "", `#${model.state.recipe.id}`);
+
+    //關閉視窗
+    setTimeout(() => {
+      addRecipeView._toggleWindow();
+    }, MODAL_SECOND * 1000);
+  } catch (error) {
+    console.error(error);
+    addRecipeView.renderErrMes(error.message);
+  }
 };
 
 //subscriber (Publisher-Subscriber design pattern)
@@ -109,5 +142,6 @@ const init = function () {
   recipeView.handlerBookMarked(bookmark);
   searchView.handlerSearch(controlRearchRes);
   paginationView.handlerClick(switchPagination);
+  addRecipeView.handlerUpload(uploadRecipe);
 };
 init();

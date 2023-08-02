@@ -12,7 +12,6 @@ class ResultView extends View {
   _message = "";
 
   _renderhtml() {
-    console.log(this._data);
     return (
       //回傳的結果會變成字串
       this._data.map((result) => previewView.render(result, false)).join("")
