@@ -84,12 +84,18 @@ export const updateServings = function (serving) {
   state.recipe.servings = serving;
 };
 
+const setLocal = function () {
+  localStorage.setItem("bookmark", JSON.stringify(state.bookMarks));
+};
+
 //我是書籤功能
 export const addBookMark = function (recipe) {
   state.bookMarks.push(recipe);
 
   //判斷菜單id是否相同 如果是的話就新增屬性bookMarked並設為true
   if (state.recipe.id === recipe.id) state.recipe.bookMarked = true;
+
+  setLocal();
 };
 
 //移除書籤功能
@@ -97,4 +103,18 @@ export const rmBookMark = function (id) {
   const index = state.bookMarks.findIndex((el) => el.id === id);
   state.bookMarks.splice(index, 1);
   if (state.recipe.id === id) state.recipe.bookMarked = false;
+  setLocal();
 };
+
+//從儲存庫將資料移出
+const init = function () {
+  const storage = localStorage.getItem("bookmark");
+  if (storage) state.bookMarks = JSON.parse(storage);
+};
+init();
+
+//清除儲存庫
+const remove = function () {
+  localStorage.clear("bookmark");
+};
+//remove();

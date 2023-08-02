@@ -11,6 +11,10 @@ class BookmarkView extends View {
   //正確訊息
   _message = "";
 
+  handlerBookMark(handler) {
+    window.addEventListener("load", handler);
+  }
+
   _renderhtml() {
     console.log(this._data);
     return (

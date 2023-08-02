@@ -22,10 +22,16 @@ const showRecipe = async function () {
     recipeView.crossAnimation();
 
     //更新sidebar資料讓被選擇的選項有css特效
+    //0
     resultView.update(model.getLimitData());
 
+    //1
+    bookmarkView.update(model.state.bookMarks);
+
+    //2
     await model.testAxios(id);
 
+    //3
     recipeView.render(model.state.recipe);
   } catch (error) {
     recipeView.renderErrMes();
@@ -90,8 +96,14 @@ const bookmark = function () {
   //渲染書籤總覽
   bookmarkView.render(model.state.bookMarks);
 };
+
+const loadBookMark = function () {
+  bookmarkView.render(model.state.bookMarks);
+};
+
 //subscriber (Publisher-Subscriber design pattern)
 const init = function () {
+  bookmarkView.handlerBookMark(loadBookMark);
   recipeView.addHandlerRender(showRecipe);
   recipeView.handlerUpdateServing(contorlServings);
   recipeView.handlerBookMarked(bookmark);
