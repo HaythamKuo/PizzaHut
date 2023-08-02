@@ -15,6 +15,7 @@ class RecipeView extends View {
     ["hashchange", "load"].forEach((e) => window.addEventListener(e, handler));
   }
 
+  //publisher (Publisher-Subscriber design pattern)
   handlerUpdateServing(handler) {
     this._parentEl.addEventListener("click", (e) => {
       const btn = e.target.closest(".btn--increase-servings");
@@ -22,6 +23,16 @@ class RecipeView extends View {
 
       const num = +btn.dataset.update;
       if (num > 0) handler(num);
+    });
+  }
+
+  //publisher (Publisher-Subscriber design pattern)
+  handlerBookMarked(handler) {
+    this._parentEl.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn--bookmark");
+      if (!btn) return;
+      console.log(this._data);
+      handler();
     });
   }
   //單獨行使return html的方法
@@ -75,9 +86,11 @@ class RecipeView extends View {
             <div class="recipe__user-generated">
               
             </div>
-            <button class="btn--round">
+            <button class="btn--round btn--bookmark">
               <svg class="">
-                <use href="${icons}#icon-bookmark-fill"></use>
+                <use href="${icons}#icon-bookmark${
+      this._data.bookMarked ? "-fill" : ""
+    }"></use>
               </svg>
             </button>
           </div>

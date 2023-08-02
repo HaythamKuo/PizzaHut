@@ -6,6 +6,7 @@ import recipeView from "./components/reciperview.js";
 import searchView from "./components/searchView.js";
 import resultView from "./components/resultView.js";
 import paginationView from "./components/paginationView.js";
+import bookmarkView from "./components/bookmarkView.js";
 
 //再build application之後路徑可能有所改變
 //import icons from "url:./public/img/icons.svg";
@@ -77,10 +78,23 @@ const contorlServings = function (serving) {
   recipeView.update(model.state.recipe);
 };
 
+//書籤功能
+const bookmark = function () {
+  //新增/移除書籤
+  if (!model.state.recipe.bookMarked) model.addBookMark(model.state.recipe);
+  else model.rmBookMark(model.state.recipe.id);
+
+  //重新渲染書籤按鈕
+  recipeView.update(model.state.recipe);
+
+  //渲染書籤總覽
+  bookmarkView.render(model.state.bookMarks);
+};
 //subscriber (Publisher-Subscriber design pattern)
 const init = function () {
   recipeView.addHandlerRender(showRecipe);
   recipeView.handlerUpdateServing(contorlServings);
+  recipeView.handlerBookMarked(bookmark);
   searchView.handlerSearch(controlRearchRes);
   paginationView.handlerClick(switchPagination);
 };
