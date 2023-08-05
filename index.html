@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!--this is for icon-->
+    <link rel="shortcut icon" href="" />
+    <link rel="bookmark" href="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pizza Hut</title>
+    <title>歐印汪料理</title>
   </head>
   <body>
     <div id="app">
@@ -12,16 +15,12 @@
         <header class="header">
           <img src="../public/img/logo.png" alt="Logo" class="header__logo" />
           <form class="search">
-            <input
-              type="text"
-              class="search__field"
-              placeholder="Search over 1,000,000 recipes..."
-            />
+            <input type="text" class="search__field" placeholder="搜尋關鍵字" />
             <button class="btn search__btn">
               <svg class="search__icon">
                 <use href="../public/img/icons.svg#icon-search"></use>
               </svg>
-              <span>Search</span>
+              <span>搜尋</span>
             </button>
           </form>
 
@@ -32,7 +31,7 @@
                   <svg class="nav__icon">
                     <use href="../public/img/icons.svg#icon-edit"></use>
                   </svg>
-                  <span>Add recipe</span>
+                  <span>增加菜單</span>
                 </button>
               </li>
               <li class="nav__item">
@@ -40,7 +39,7 @@
                   <svg class="nav__icon">
                     <use href="../public/img/icons.svg#icon-bookmark"></use>
                   </svg>
-                  <span>Bookmarks</span>
+                  <span>書籤</span>
                 </button>
                 <div class="bookmarks">
                   <ul class="bookmarks__list">
@@ -133,7 +132,7 @@
                 <use href="/img/icons.svg#icon-smile"></use>
               </svg>
             </div>
-            <p>Start by searching for a recipe or an ingredient. Have fun!</p>
+            <p>搜尋菜單或是關鍵字，說不定會有意想不到的發現喔！</p>
           </div>
 
           <!-- <div class="spinner">
@@ -248,68 +247,93 @@
           -->
         </div>
       </div>
+      <div class="btntip">
+        <button class="btn--quest">&quest;</button>
+        <button class="btn--up">&uarr;</button>
+      </div>
+
+      <div class="hidden overlaies gooday">
+        <div class="btnForm hidden">
+          <h1>不知道從何處開始嗎？提供給您一些關鍵字</h1>
+          <hr />
+          <div>
+            <ul class="btnForm--lists">
+              <li class="btnForm--lists__list">pizza</li>
+              <li class="btnForm--lists__list">sushi</li>
+              <li class="btnForm--lists__list">pasta</li>
+              <li class="btnForm--lists__list">avocado</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
       <div class="overlay hidden"></div>
       <div class="add-recipe-window hidden">
         <button class="btn--close-modal">&times;</button>
         <form class="upload">
           <div class="upload__column">
-            <h3 class="upload__heading">Recipe data</h3>
-            <label>Title</label>
+            <h3 class="upload__heading">菜單資訊</h3>
+            <label>菜單名稱</label>
             <input value="TEST23" required name="title" type="text" />
-            <label>URL</label>
+            <label>網址</label>
             <input value="TEST23" required name="sourceUrl" type="text" />
-            <label>Image URL</label>
+            <label>圖片網址</label>
             <input value="TEST23" required name="image" type="text" />
-            <label>Publisher</label>
+            <label>主廚</label>
             <input value="TEST23" required name="publisher" type="text" />
-            <label>Prep time</label>
-            <input value="23" required name="cookingTime" type="number" />
-            <label>Servings</label>
-            <input value="23" required name="servings" type="number" />
+            <label>烹飪時間</label>
+            <input
+              value="0"
+              required
+              name="cookingTime"
+              type="number"
+              placeholder="以分鐘為單位"
+            />
+            <label>份數</label>
+            <input value="0" required name="servings" type="number" />
           </div>
 
           <div class="upload__column">
-            <h3 class="upload__heading">Ingredients</h3>
-            <label>Ingredient 1</label>
+            <h3 class="upload__heading">料理所需成分及數量</h3>
+            <label>成份 1</label>
             <input
               value="0.5,kg,Rice"
               type="text"
               required
               name="ingredient-1"
-              placeholder="Format: 'Quantity,Unit,Description'"
+              placeholder="格式: '重量,單位,描述'"
             />
-            <label>Ingredient 2</label>
+            <label>成份 2</label>
             <input
               value="1,,Avocado"
               type="text"
               name="ingredient-2"
               placeholder="Format: 'Quantity,Unit,Description'"
             />
-            <label>Ingredient 3</label>
+            <label>成份 3</label>
             <input
               value=",,salt"
               type="text"
               name="ingredient-3"
               placeholder="Format: 'Quantity,Unit,Description'"
             />
-            <label>Ingredient 4</label>
+            <label>成份 4</label>
             <input
               type="text"
               name="ingredient-4"
-              placeholder="Format: 'Quantity,Unit,Description'"
+              placeholder="格式: '重量,單位,描述'"
             />
-            <label>Ingredient 5</label>
+            <label>成份 5</label>
             <input
               type="text"
               name="ingredient-5"
-              placeholder="Format: 'Quantity,Unit,Description'"
+              placeholder="格式: '重量,單位,描述'"
             />
-            <label>Ingredient 6</label>
+            <label>成份 6</label>
             <input
               type="text"
               name="ingredient-6"
-              placeholder="Format: 'Quantity,Unit,Description'"
+              placeholder="格式: '重量,單位,描述'"
             />
           </div>
 
@@ -317,7 +341,7 @@
             <svg>
               <use href="../public/img/icons.svg#icon-upload-cloud"></use>
             </svg>
-            <span>Upload</span>
+            <span>上傳</span>
           </button>
         </form>
       </div>

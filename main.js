@@ -1,4 +1,4 @@
-import "./style.css";
+//import "./style.css";
 import "./styles/main.scss";
 
 import * as model from "./components/model.js";
@@ -8,6 +8,7 @@ import resultView from "./components/resultView.js";
 import paginationView from "./components/paginationView.js";
 import bookmarkView from "./components/bookmarkView.js";
 import addRecipeView from "./components/addRecipeView.js";
+import btnView from "./components/buttonView.js";
 import { MODAL_SECOND } from "./config.js";
 
 //再build application之後路徑可能有所改變
@@ -134,6 +135,10 @@ const uploadRecipe = async function (newRecipe) {
   }
 };
 
+const btnTrigger = function (what) {
+  console.log("controller" + what);
+};
+
 //subscriber (Publisher-Subscriber design pattern)
 const init = function () {
   bookmarkView.handlerBookMark(loadBookMark);
@@ -143,5 +148,6 @@ const init = function () {
   searchView.handlerSearch(controlRearchRes);
   paginationView.handlerClick(switchPagination);
   addRecipeView.handlerUpload(uploadRecipe);
+  btnView.handlerBtn();
 };
 init();

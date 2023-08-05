@@ -177,3 +177,88 @@
     font-weight: 700;
   }
 }
+
+.btn--up {
+  background: none;
+  background-color: #472d30;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  position: fixed;
+  bottom: -40px; /* 距離網頁頂部的距離 */
+  right: 40px; /* 距離網頁右側的距離 */
+  width: 40px; /* 按鈕的寬度 */
+  height: 40px; /* 按鈕的高度 */
+  transition: all 1s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+  }
+}
+
+.btn--quest {
+  background: none;
+  background-color: #472d30; /* 按鈕的背景顏色 */
+  color: #fff; /* 按鈕內容的顏色 */
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 95px; /* 距離網頁頂部的距離 */
+  right: 40px; /* 距離網頁右側的距離 */
+  width: 40px; /* 按鈕的寬度 */
+  height: 40px; /* 按鈕的高度 */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+  }
+}
+
+.btnForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50rem;
+  background-color: white;
+  border-radius: 9px;
+
+  padding: 5rem 6rem;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition: all 0.5s;
+
+  &--lists {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-top: 1.5rem;
+    &__list {
+      flex: 0 0 50%;
+      font-size: 3rem;
+      text-align: center;
+    }
+  }
+}
+.overlaies {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  transition: all 0.5s;
+}

@@ -40,6 +40,5 @@ class AddRecipe extends View {
       handler(data);
     });
   }
-  _renderhtml() {}
 }
 export default new AddRecipe();

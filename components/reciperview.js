@@ -54,7 +54,7 @@ class RecipeView extends View {
               <span class="recipe__info-data recipe__info-data--minutes">${
                 this._data.cookingTime
               }</span>
-              <span class="recipe__info-text">minutes</span>
+              <span class="recipe__info-text">分鐘</span>
             </div>
             <div class="recipe__info">
               <svg class="recipe__info-icon">
@@ -63,7 +63,7 @@ class RecipeView extends View {
               <span class="recipe__info-data recipe__info-data--people">${
                 this._data.servings
               }</span>
-              <span class="recipe__info-text">servings</span>
+              <span class="recipe__info-text">人份</span>
   
               <div class="recipe__info-buttons">
                 <button class="btn--tiny btn--increase-servings" data-update="${
@@ -100,7 +100,7 @@ class RecipeView extends View {
           </div>
   
           <div class="recipe__ingredients">
-            <h2 class="heading--2">Recipe ingredients</h2>
+            <h2 class="heading--2">料理資訊</h2>
             <ul class="recipe__ingredient-list">
             ${this._data.ingredients
               .map((ing) => {
@@ -123,20 +123,19 @@ class RecipeView extends View {
           </div>
   
           <div class="recipe__directions">
-            <h2 class="heading--2">How to cook it</h2>
+            <h2 class="heading--2">料理準則</h2>
             <p class="recipe__directions-text">
-              This recipe was carefully designed and tested by
+              來自大廚
               <span class="recipe__publisher">${
                 this._data.publisher
-              }</span>. Please check out
-              directions at their website.
+              }</span>設計的菜單，用心設計與無數次試吃
             </p>
             <a
               class="btn--small recipe__btn"
               href="${this._data.sourceUrl}"
               target="_blank"
             >
-              <span>Directions</span>
+              <span>更多資訊...</span>
               <svg class="search__icon">
                 <use href="${icons}#icon-arrow-right"></use>
               </svg>
