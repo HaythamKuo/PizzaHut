@@ -2,10 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
     <!--this is for icon-->
-    <link rel="shortcut icon" href="" />
-    <link rel="bookmark" href="" />
+    <link
+      rel="shortcut icon"
+      href="./public//Forkify-logo//vector/default.svg"
+    />
+    <link rel="bookmark" href="./public//Forkify-logo//vector/default.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>歐印汪料理</title>
   </head>
@@ -13,12 +16,17 @@
     <div id="app">
       <div class="container">
         <header class="header">
-          <img src="../public/img/logo.png" alt="Logo" class="header__logo" />
+          <!-- ../public/img/logo.png -->
+          <img
+            src="./public//Forkify-logo/cover.png"
+            alt="Logo"
+            class="header__logo"
+          />
           <form class="search">
             <input type="text" class="search__field" placeholder="搜尋關鍵字" />
             <button class="btn search__btn">
               <svg class="search__icon">
-                <use href="../public/img/icons.svg#icon-search"></use>
+                <use href="/img/icons.svg#icon-search"></use>
               </svg>
               <span>搜尋</span>
             </button>
@@ -29,7 +37,7 @@
               <li class="nav__item">
                 <button class="nav__btn nav__btn--add-recipe">
                   <svg class="nav__icon">
-                    <use href="../public/img/icons.svg#icon-edit"></use>
+                    <use href="/img/icons.svg#icon-edit"></use>
                   </svg>
                   <span>增加菜單</span>
                 </button>
@@ -37,7 +45,7 @@
               <li class="nav__item">
                 <button class="nav__btn nav__btn--bookmarks">
                   <svg class="nav__icon">
-                    <use href="../public/img/icons.svg#icon-bookmark"></use>
+                    <use href="/img/icons.svg#icon-bookmark"></use>
                   </svg>
                   <span>書籤</span>
                 </button>
@@ -46,27 +54,13 @@
                     <div class="message">
                       <div>
                         <svg>
-                          <use href="../public/img/icons.svg#icon-smile"></use>
+                          <use href="/img/icons.svg#icon-smile"></use>
                         </svg>
                       </div>
                       <p>
                         目前沒有任何書籤，找到一個您喜歡的餐點並點擊加入它 :)
                       </p>
                     </div>
-
-                    <!-- <li class="preview">
-                      <a class="preview__link" href="#23456">
-                        <figure class="preview__fig">
-                          <img src="src/img/test-1.jpg" alt="Test" />
-                        </figure>
-                        <div class="preview__data">
-                          <h4 class="preview__name">
-                            Pasta with Tomato Cream ...
-                          </h4>
-                          <p class="preview__publisher">The Pioneer Woman</p>
-                        </div>
-                      </a>
-                    </li> -->
                   </ul>
                 </div>
               </li>
@@ -75,41 +69,9 @@
         </header>
 
         <div class="search-results">
-          <ul class="results">
-            <!-- 
-            <li class="preview">
-              <a class="preview__link preview__link--active" href="#23456">
-                <figure class="preview__fig">
-                  <img src="src/img/test-1.jpg" alt="Test" />
-                </figure>
-                <div class="preview__data">
-                  <h4 class="preview__title">Pasta with Tomato Cream ...</h4>
-                  <p class="preview__publisher">The Pioneer Woman</p>
-                  <div class="preview__user-generated">
-                    <svg>
-                      <use href="src/img/icons.svg#icon-user"></use>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </li>
-             -->
-          </ul>
+          <ul class="results"></ul>
 
-          <div class="pagination">
-            <!-- <button class="btn--inline pagination__btn--prev">
-              <svg class="search__icon">
-                <use href="src/img/icons.svg#icon-arrow-left"></use>
-              </svg>
-              <span>Page 1</span>
-            </button>
-            <button class="btn--inline pagination__btn--next">
-              <span>Page 3</span>
-              <svg class="search__icon">
-                <use href="src/img/icons.svg#icon-arrow-right"></use>
-              </svg>
-            </button> -->
-          </div>
+          <div class="pagination"></div>
 
           <p class="copyright">
             &copy; Copyright by
@@ -134,117 +96,6 @@
             </div>
             <p>搜尋菜單或是關鍵字，說不定會有意想不到的發現喔！</p>
           </div>
-
-          <!-- <div class="spinner">
-            <svg>
-              <use href="src/img/icons.svg#icon-loader"></use>
-            </svg>
-          </div> -->
-
-          <!-- <div class="error">
-              <div>
-                <svg>
-                  <use href="src/img/icons.svg#icon-alert-triangle"></use>
-                </svg>
-              </div>
-              <p>No recipes found for your query. Please try again!</p>
-            </div> -->
-
-          <!--
-          <figure class="recipe__fig">
-            <img src="src/img/test-1.jpg" alt="Tomato" class="recipe__img" />
-            <h1 class="recipe__title">
-              <span>Pasta with tomato cream sauce</span>
-            </h1>
-          </figure>
-      
-          <div class="recipe__details">
-            <div class="recipe__info">
-              <svg class="recipe__info-icon">
-                <use href="src/img/icons.svg#icon-clock"></use>
-              </svg>
-              <span class="recipe__info-data recipe__info-data--minutes">45</span>
-              <span class="recipe__info-text">minutes</span>
-            </div>
-            <div class="recipe__info">
-              <svg class="recipe__info-icon">
-                <use href="src/img/icons.svg#icon-users"></use>
-              </svg>
-              <span class="recipe__info-data recipe__info-data--people">4</span>
-              <span class="recipe__info-text">servings</span>
-      
-              <div class="recipe__info-buttons">
-                <button class="btn--tiny btn--increase-servings">
-                  <svg>
-                    <use href="src/img/icons.svg#icon-minus-circle"></use>
-                  </svg>
-                </button>
-                <button class="btn--tiny btn--increase-servings">
-                  <svg>
-                    <use href="src/img/icons.svg#icon-plus-circle"></use>
-                  </svg>
-                </button>
-              </div>
-            </div>
-      
-            <div class="recipe__user-generated">
-              <svg>
-                <use href="src/img/icons.svg#icon-user"></use>
-              </svg>
-            </div>
-            <button class="btn--round">
-              <svg class="">
-                <use href="src/img/icons.svg#icon-bookmark-fill"></use>
-              </svg>
-            </button>
-          </div>
-      
-          <div class="recipe__ingredients">
-            <h2 class="heading--2">Recipe ingredients</h2>
-            <ul class="recipe__ingredient-list">
-              <li class="recipe__ingredient">
-                <svg class="recipe__icon">
-                  <use href="src/img/icons.svg#icon-check"></use>
-                </svg>
-                <div class="recipe__quantity">1000</div>
-                <div class="recipe__description">
-                  <span class="recipe__unit">g</span>
-                  pasta
-                </div>
-              </li>
-      
-              <li class="recipe__ingredient">
-                <svg class="recipe__icon">
-                  <use href="src/img/icons.svg#icon-check"></use>
-                </svg>
-                <div class="recipe__quantity">0.5</div>
-                <div class="recipe__description">
-                  <span class="recipe__unit">cup</span>
-                  ricotta cheese
-                </div>
-              </li>
-            </ul>
-          </div>
-      
-          <div class="recipe__directions">
-            <h2 class="heading--2">How to cook it</h2>
-            <p class="recipe__directions-text">
-              This recipe was carefully designed and tested by
-              <span class="recipe__publisher">The Pioneer Woman</span>. Please check out
-              directions at their website.
-            </p>
-            <a
-              class="btn--small recipe__btn"
-              href="http://thepioneerwoman.com/cooking/pasta-with-tomato-cream-sauce/"
-              target="_blank"
-            >
-              <span>Directions</span>
-              <svg class="search__icon">
-                <use href="src/img/icons.svg#icon-arrow-right"></use>
-              </svg>
-            </a>
-          </div>
-          -->
         </div>
       </div>
       <div class="btntip">
@@ -339,7 +190,7 @@
 
           <button class="btn upload__btn">
             <svg>
-              <use href="../public/img/icons.svg#icon-upload-cloud"></use>
+              <use href="/img/icons.svg#icon-upload-cloud"></use>
             </svg>
             <span>上傳</span>
           </button>

@@ -6,13 +6,9 @@ const container = document.querySelector(".container");
 
 function obsfn(entries) {
   entries.forEach((entry) => {
-    if (!entry.isIntersecting && entry.target === nav) {
-      // Button is outside .nav and leaving viewport
+    if (!entry.isIntersecting && entry.target === nav)
       btnUp.style.bottom = "30px";
-    } else {
-      // Button is inside .nav or still in viewport
-      btnUp.style.bottom = ""; // Reset back to default color
-    }
+    else btnUp.style.bottom = "";
   });
 }
 const obsOpts = {
